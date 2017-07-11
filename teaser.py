@@ -4,42 +4,49 @@
 import os
 import sys
 import random
+import signal
+
+def sig_term_handler(signal, frame):
+    print("ta for now!")
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, sig_term_handler)
 
 def addprob(difficulty):
-        a = random.randint(-100*10**difficulty, 100*10**difficulty)
+    a = random.randint(-100*10**difficulty, 100*10**difficulty)
     b = random.randint(-100*10**difficulty, 100*10**difficulty)
-    attempt = float(raw_input("{} + {}\n".format(a,b)))
+    attempt = float(input("{} + {}\n".format(a,b)))
     while attempt != a + b:
-        print "incorrect, try again"
-        attempt = float(raw_input("{} + {}\n".format(a,b)))
-    print "correct!"
+        print("incorrect, try again")
+        attempt = float(input("{} + {}\n".format(a,b)))
+    print("correct!")
 
 def subtractprob(difficulty):
-        a = random.randint(-100*10**difficulty, 100*10**difficulty)
+    a = random.randint(-100*10**difficulty, 100*10**difficulty)
     b = random.randint(-100*10**difficulty, 100*10**difficulty)
-        attempt = float(raw_input("{} - {}\n".format(a,b)))
+    attempt = float(input("{} - {}\n".format(a,b)))
     while attempt != a - b:
-        print "incorrect, try again"
-        attempt = float(raw_input("{} - {}\n".format(a,b)))
-    print "correct!"
+        print("incorrect, try again")
+        attempt = float(input("{} - {}\n".format(a,b)))
+    print("correct!")
 
 def multprob(difficulty):
     a = round(random.random()*10*difficulty, 0)
     b = round(random.random()*10*difficulty, 0)
-    attempt = float(raw_input("{} * {}\n".format(a,b)))
+    attempt = float(input("{} * {}\n".format(a,b)))
     while attempt != round(a * b, 4):
-        print "incorrect, try again"
-        attempt = float(raw_input("{} * {}\n".format(a,b)))
-    print "correct!"
+        print("incorrect, try again")
+        attempt = float(input("{} * {}\n".format(a,b)))
+    print("correct!")
 
 def divprob(difficulty):
     a = round(random.random()*10*difficulty, 0)
     b = round(random.random()*10*difficulty, 0)
-    attempt = float(raw_input("{} / {}\n".format(a,b)))
+    attempt = float(input("{} / {}\n".format(a,b)))
     while attempt != round(a / b, 4):
-        print "incorrect, try again"
-        attempt = float(raw_input("{} / {}\n".format(a,b)))
-    print "correct!"
+        print("incorrect, try again")
+        attempt = float(input("{} / {}\n".format(a,b)))
+    print("correct!")
 
 #def probprob():
 
@@ -65,11 +72,11 @@ def hexprob(difficulty):
             rem = num % 16
             correct = correct + hexmap[rem]
             num = num // 16
-    inputu = raw_input("Convert {} to {}\n".format(num,b))
+    inputu = input("Convert {} to {}\n".format(num,b))
     attempt = [int(inputu) if direction > 0.5 else str(inputu)]
     while attempt != correct:
-        print "incorrect, try again"
-        inputu = raw_input("Convert {} to {}\n".format(num,b))
+        print("incorrect, try again")
+        inputu = input("Convert {} to {}\n".format(num,b))
         attempt = [int(inputu) if direction > 0.5 else str(inputu)]
 
 
@@ -92,6 +99,7 @@ if __name__ == "__main__":
         subtractprob(difficulty)
         multprob(difficulty)
         divprob(difficulty)
+        exit(0)
 
 
 
