@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="/static/css/main.css" type="text/css">
+    {% block body %}
+    {% if session['logged_in'] %}
+    <p>You're logged in already!</p>
+    {% else %}
+
+
+    <form action="/problem/{{type}}/{{difficulty}}" method="POST">
+        <div class="login">
+            <div class="login-screen">
+                <div class="app-title">
+                    <h1>Whetstone</h1>
+                </div>
+
+                <div class="login-form">
+                    <div class="control-group">
+                        {% if user_problem %}
+                            {{ user_problem }}
+                        {% endif %}
+                    </div>
+
+                    <div class="control-group">
+                        <input type="text" id="user_answer" class="login-field" value="" placeholder="" name="user_answer">
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+
+                    <input type="submit" name="answer_submission" value="Submit" class="btn btn-primary btn-large btn-block" />
+                    <br>
+                        {% if status %}
+                            {{ status }}
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="/" method="GET">
+        <div class="login-form">
+            <input type="submit" name="return" value="Return" class="btn btn-primary btn-large btn-block return" />
+        </div>
+    </form>
+
+    {% endif %}
+    {% endblock %}
+</html>
