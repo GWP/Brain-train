@@ -1,11 +1,13 @@
 #!../virtual/bin/python3.6
 
 from migrate.versioning import api
-from config import SQLALCHEMY_DATABASE_URI
-from config import SQLALCHEMY_MIGRATE_REPO
+#from config import SQLALCHEMY_DATABASE_URI
+#from config import SQLALCHEMY_MIGRATE_REPO
 from app import db
 import os.path
 
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://masterblaster:triumphtr4@whetstone-mysql.cd76mudin3zw.us-west-2.rds.amazonaws.com:3306'
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 db.create_all()
 
 if not os.path.exists(SQLALCHEMY_MIGRATE_REPO):
